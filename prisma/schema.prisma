@@ -1,0 +1,49 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model ApplyAccount {
+  id                   String    @id
+  unificationAccountId String?   @map("unification_account_id")
+  lastName             String?   @map("last_name")
+  firstName            String?   @map("first_name")
+  emailReceiveFlag     String?   @map("email_receive_flag") @default("1")
+  portalDataUrl        String?   @map("portal_data_url")
+  categoryId           String?   @map("category_id")
+  registrationName     String    @map("registration_name")
+  accountTypeId        String    @map("account_type_id")
+  cognitoId            String?   @map("cognito_id")
+  mailAddress          String    @map("mail_address")
+  lockFlg              Boolean   @map("lock_flg") @default(false)
+  loginDate            DateTime? @map("login_date")
+  logoutDate           DateTime? @map("logout_date")
+  managementKeywords   String?   @map("management_keywords")
+  staffDepartment      String?   @map("staff_department")
+  staffPosition        String?   @map("staff_position")
+  staffLastName        String?   @map("staff_last_name")
+  staffFirstName       String?   @map("staff_first_name")
+  staffPrefecture      String?   @map("staff_prefecture")
+  staffCity            String?   @map("staff_city")
+  staffAddress         String?   @map("staff_address")
+  staffBuilding        String?   @map("staff_building")
+  staffRoomNumber      String?   @map("staff_room_number")
+  staffTel             String?   @map("staff_tel")
+  staffMobile          String?   @map("staff_mobile")
+  deletedAt            DateTime? @map("deleted_at")
+  createdAccountId     String    @map("created_account_id")
+  createdAt            DateTime  @default(now()) @map("created_at")
+  updatedAccountId     String    @map("updated_account_id")
+  updatedAt            DateTime  @updatedAt @map("updated_at")
+  @@map("apply_accounts")
+}
